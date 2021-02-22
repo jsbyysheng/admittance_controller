@@ -1,5 +1,5 @@
 # Force Sensor
-topic_force_sensor: "/wrench"
+topic_force_sensor: "/ethdaq_data"
 
 # Position and Velocity Control
 topic_joint_trajectory: "/scaled_pos_joint_traj_controller/command"

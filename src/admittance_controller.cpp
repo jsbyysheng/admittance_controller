@@ -344,13 +344,13 @@ bool admittance_control::Restart_URCap_Service_Callback(std_srvs::Trigger::Reque
 Eigen::Matrix4d admittance_control::compute_fk() {
     ros::spinOnce();
 
-    //Update MoveIt! Kinematic Model
+    // Update MoveIt! Kinematic Model
     kinematic_state->setJointGroupPositions(joint_model_group, joint_position);
     kinematic_state->setJointGroupVelocities(joint_model_group, joint_velocity);
     kinematic_state->enforceBounds();
 
     // Computing the actual position of the end-effector using Forward Kinematic respect "world"
-    const Eigen::Affine3d &end_effector_state = kinematic_state->getGlobalLinkTransform("tool0");
+    const Eigen::Affine3d &end_effector_state = kinematic_state->getGlobalLinkTransform("ft_sensor_link");
 
     // Get the Translation Vector and Rotation Matrix
     Eigen::Vector3d translation_vector = end_effector_state.translation();
@@ -416,7 +416,7 @@ Matrix6d admittance_control::get_ee_rotation_matrix(std::vector<double> joint_po
     kinematic_state->enforceBounds();
 
     // Computing the actual position of the end-effector using Forward Kinematic respect "world"
-    const Eigen::Affine3d &end_effector_state = kinematic_state->getGlobalLinkTransform("tool0");
+    const Eigen::Affine3d &end_effector_state = kinematic_state->getGlobalLinkTransform("ft_sensor_link");
 
     // Rotation Matrix 6x6
     Matrix6d rotation_matrix;
